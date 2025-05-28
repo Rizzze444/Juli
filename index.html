@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Julieta 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .heart {
+      font-size: 3rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .button {
+      background: #ffffff;
+      color: #ee4c7c;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s, background 0.3s;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: #ffe3ec;
+      transform: scale(1.05);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      color: #333;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      text-align: center;
+    }
+
+    .modal p {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      z-index: 999;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9rem;
+      color: #fff8f8;
+    }
+
+    .love-display {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 5;
+      display: none;
+    }
+
+    .heart-float {
+      position: absolute;
+      color: red;
+      font-size: 2rem;
+      animation: float 5s linear infinite;
+      user-select: none;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    #teAmo {
+      font-size: 2rem;
+      margin-top: 30px;
+      color: white;
+      text-shadow: 1px 1px 5px #000;
+      display: none;
+      z-index: 6;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <audio id="music" loop>
+    <source src="https://www.dropbox.com/scl/fi/k7t4v5d9jaf9gckn0mj7r/DUKI-Si-me-sobrara-el-tiempo.mp3?rlkey=9y8b42vxt0lz7elw9f6i3cucf&raw=1" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <div class="container">
+    <div class="heart">❤️</div>
+    <h1>Para ti, Julieta</h1>
+    <p>Eres la razón por la que cada día vale la pena. 💌</p>
+    <div class="buttons">
+      <div class="button" onclick="mostrarCorazones()">Nuestro Amor</div>
+      <div class="button" onclick="mostrarMensaje()">Un Mensaje</div>
+    </div>
+    <div id="teAmo">Te amo 💖</div>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="cerrarModal()"></div>
+
+  <div class="modal" id="mensajeModal">
+    <p>Julieta... si fueras una app, serías mi favorita (y no tendría espacio para más 😘).</p>
+    <p>Gracias por ser tan increíble. Hasta el WiFi mejora cuando estás cerca 💘</p>
+  </div>
+
+  <div class="love-display" id="loveDisplay"></div>
+
+  <div class="footer">
+    Con todo mi cariño 💖
+  </div>
+
+  <script>
+    function mostrarMensaje() {
+      document.getElementById('mensajeModal').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    function cerrarModal() {
+      document.getElementById('mensajeModal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    function mostrarCorazones() {
+      const loveDisplay = document.getElementById("loveDisplay");
+      const teAmo = document.getElementById("teAmo");
+      loveDisplay.style.display = "block";
+      teAmo.style.display = "block";
+
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart-float");
+        heart.innerText = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 3 + Math.random() * 2 + "s";
+        loveDisplay.appendChild(heart);
+
+        setTimeout(() => {
+          loveDisplay.removeChild(heart);
+        }, 5000);
+      }
+    }
+  
+function iniciarMusica() {
+  const music = document.getElementById("music");
+  if (music.paused) {
+    music.play().catch(() => {});
+  }
+}
+
+document.querySelectorAll('.button').forEach(btn => {
+  btn.addEventListener('click', iniciarMusica);
+});
+</script>
+
+</body>
+</html>
